@@ -1,88 +1,88 @@
 # AGENTS.md
 
-Este repositório contém duas áreas principais:
+This repository contains two main areas:
 
-- `backend`: API em Kotlin + Spring Boot
-- `infrastructure`: código de infraestrutura para deploy
+- `backend`: Kotlin + Spring Boot API
+- `infrastructure`: infrastructure code for deployment
 
-## Objetivo do projeto
+## Project goal
 
-Construir um serviço simples para uso com OpenClaw/MCP que consome dados de uma API de ERP e expõe relatórios personalizados.
+Build a simple service for use with OpenClaw/MCP that consumes data from an ERP API and exposes custom reports.
 
-## Princípios obrigatórios para qualquer agente
+## Mandatory principles for all agents
 
-1. **Simplicidade primeiro**
-   - Este serviço é simples.
-   - Não introduza complexidade desnecessária.
-   - Evite abstrações genéricas “para o futuro”.
-   - Evite padrões sofisticados se um fluxo direto resolver.
+1. **Simplicity first**
+   - This service is simple.
+   - Do not introduce unnecessary complexity.
+   - Avoid generic abstractions "for the future".
+   - Avoid sophisticated patterns if a direct flow solves the problem.
 
-2. **Sem banco de dados**
-   - Não adicionar PostgreSQL, MySQL, MongoDB, Redis ou qualquer persistência local/remota para dados de domínio.
-   - A fonte de verdade é a API do ERP.
-   - O serviço apenas consulta, transforma e expõe dados.
-   - Só usar armazenamento se houver necessidade estritamente operacional e aprovada explicitamente.
+2. **No database**
+   - Do not add PostgreSQL, MySQL, MongoDB, Redis, or any local/remote persistence for domain data.
+   - The source of truth is the ERP API.
+   - The service only queries, transforms, and exposes data.
+   - Only use storage if there is a strictly operational need that has been explicitly approved.
 
-3. **Arquitetura**
-   - Usar Kotlin + Spring Boot.
-   - Seguir uma abordagem **CQRS simples**, separando claramente leitura de escrita.
-   - Como o serviço inicialmente será majoritariamente de leitura, priorizar queries e fluxos de consulta.
-   - Commands só devem existir se fizerem sentido para orquestração, refresh, validação ou transformação.
-   - Não usar event sourcing.
-   - Não usar mensageria.
-   - Não criar microsserviços.
-   - Não modularizar o projeto prematuramente.
+3. **Architecture**
+   - Use Kotlin + Spring Boot.
+   - Follow a **simple CQRS approach**, clearly separating reads from writes.
+   - Since the service will initially be mostly read-oriented, prioritize queries and read flows.
+   - Commands should only exist when they make sense for orchestration, refresh, validation, or transformation.
+   - Do not use event sourcing.
+   - Do not use messaging.
+   - Do not create microservices.
+   - Do not prematurely split the project into modules.
 
-4. **Estrutura do repositório**
-   - `backend/`: código da API Kotlin/Spring
-   - `infrastructure/`: código de deploy e provisionamento
-   - Não mover responsabilidades entre essas duas áreas sem necessidade clara.
+4. **Repository structure**
+   - `backend/`: Kotlin/Spring API code
+   - `infrastructure/`: deployment and provisioning code
+   - Do not move responsibilities between these two areas without a clear reason.
 
-5. **Integração com ERP**
-   - Toda integração externa deve ficar bem isolada atrás de interfaces/gateways/clients.
-   - Modelos da API do ERP não devem vazar desnecessariamente para toda a aplicação.
-   - Criar DTOs/mappers quando isso melhorar clareza.
-   - Tratar timeouts, erros HTTP e respostas inesperadas de forma explícita.
+5. **ERP integration**
+   - All external integration must be well isolated behind interfaces/gateways/clients.
+   - ERP API models must not leak unnecessarily throughout the application.
+   - Create DTOs/mappers when that improves clarity.
+   - Handle timeouts, HTTP errors, and unexpected responses explicitly.
 
 6. **Endpoints**
-   - Os endpoints da nossa API podem espelhar ou reorganizar endpoints do ERP, desde que isso melhore a experiência de consumo.
-   - Preferir contratos estáveis e claros.
-   - Não expor detalhes internos desnecessários.
-   - Sempre favorecer respostas orientadas a relatório/consulta.
+   - Our API endpoints may mirror or reorganize ERP endpoints, as long as that improves the consumption experience.
+   - Prefer stable and clear contracts.
+   - Do not expose unnecessary internal details.
+   - Always favor report/query-oriented responses.
 
-7. **Boas práticas de código**
-   - Preferir Kotlin idiomático.
-   - Preferir funções pequenas e nomes claros.
-   - Evitar comentários óbvios.
-   - Evitar duplicação.
-   - Falhar com mensagens de erro úteis.
-   - Manter baixo acoplamento.
+7. **Code quality**
+   - Prefer idiomatic Kotlin.
+   - Prefer small functions and clear names.
+   - Avoid obvious comments.
+   - Avoid duplication.
+   - Fail with useful error messages.
+   - Keep coupling low.
 
-8. **Antes de implementar**
-   - Sempre confirmar se a mudança pertence a `backend` ou `infrastructure`.
-   - Verificar se a solução mantém a simplicidade do projeto.
-   - Verificar se não está introduzindo persistência sem autorização.
-   - Verificar se a mudança realmente precisa existir agora.
+8. **Before implementing**
+   - Always confirm whether the change belongs in `backend` or `infrastructure`.
+   - Verify that the solution maintains the project's simplicity.
+   - Verify that it does not introduce persistence without authorization.
+   - Verify that the change actually needs to exist now.
 
-9. **Ao propor mudanças**
-   - Explique rapidamente o porquê.
-   - Liste trade-offs quando houver.
-   - Prefira mudanças pequenas e incrementais.
+9. **When proposing changes**
+   - Briefly explain why.
+   - List trade-offs when they exist.
+   - Prefer small, incremental changes.
 
-10. **Não fazer sem alinhamento explícito**
-   - adicionar banco de dados
-   - adicionar filas/mensageria
-   - adicionar cache distribuído
-   - criar autenticação complexa
-   - criar observabilidade sofisticada além do básico
-   - criar múltiplos módulos Gradle
-   - introduzir arquitetura hexagonal completa se o ganho não for claro
+10. **Do not do without explicit alignment**
+    - add a database
+    - add queues/messaging
+    - add distributed cache
+    - create complex authentication
+    - create sophisticated observability beyond the basics
+    - create multiple Gradle modules
+    - introduce full hexagonal architecture if the benefit is not clear
 
-## Entregas esperadas do agente
+## Expected agent deliverables
 
-Ao trabalhar neste repositório, o agente deve:
-- preservar simplicidade
-- manter boa separação entre backend e infraestrutura
-- seguir CQRS leve
-- priorizar legibilidade e manutenção
-- evitar overengineering
+When working in this repository, the agent must:
+- preserve simplicity
+- maintain clear separation between backend and infrastructure
+- follow lightweight CQRS
+- prioritize readability and maintainability
+- avoid overengineering

@@ -15,7 +15,7 @@ management:
       show-details: always
 
 erp:
-  base-url: ${ERP_BASE_URL:}
-  access-token: ${ERP_ACCESS_TOKEN:}
-  secret-access-token: ${ERP_SECRET_ACCESS_TOKEN:}
+  base-url: ${ERP_BASE_URL:https://api.gestaoclick.com}
+  access-token: ${ERP_ACCESS_TOKEN:8a9eb0bbe486de320efa419929da99e53a95139a}
+  secret-access-token: ${ERP_SECRET_ACCESS_TOKEN:48cf0b93b53fa63f72f1cb9e60759870f768d3dc}
   timeout-ms: ${ERP_TIMEOUT_MS:5000}
