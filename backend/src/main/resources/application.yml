@@ -14,6 +14,12 @@ management:
     health:
       show-details: always
 
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
 erp:
   base-url: ${ERP_BASE_URL:https://api.gestaoclick.com}
   access-token: ${ERP_ACCESS_TOKEN:8a9eb0bbe486de320efa419929da99e53a95139a}

@@ -21,8 +21,8 @@ class ListSalesByPeriodHandler(private val erpClient: ErpClient) {
 
         do {
             val response = erpClient.get("vendas", SalesListErpResponse::class.java, buildParams(query, page))
-            allSales.addAll(response.data)
-            val nextPage = response.meta.proximaPagina ?: break
+            allSales.addAll(response.data ?: emptyList())
+            val nextPage = response.meta?.proximaPagina ?: break
             page = nextPage
         } while (true)
 
@@ -67,9 +67,9 @@ private fun SaleErpResponse.toSaleResponse() = SaleResponse(
     nomeSituacao = nomeSituacao,
     valorTotal = valorTotal,
     nomeLoja = nomeLoja,
-    pagamentos = pagamentos.map { it.pagamento.toPaymentResponse() },
-    produtos = produtos.map { it.produto.toProductResponse() },
-    servicos = servicos.map { it.servico.toServiceResponse() }
+    pagamentos = pagamentos?.mapNotNull { it.pagamento?.toPaymentResponse() } ?: emptyList(),
+    produtos = produtos?.mapNotNull { it.produto?.toProductResponse() } ?: emptyList(),
+    servicos = servicos?.mapNotNull { it.servico?.toServiceResponse() } ?: emptyList()
 )
 
 private fun SalePaymentErpResponse.toPaymentResponse() = PaymentResponse(

@@ -25,12 +25,12 @@ data class FiltersResponse(
 )
 
 data class SaleResponse(
-    val id: String,
-    val codigo: String,
+    val id: String?,
+    val codigo: String?,
     val clienteId: String?,
     val nomeCliente: String?,
     val nomeVendedor: String?,
-    val data: String,
+    val data: String?,
     val nomeSituacao: String?,
     val valorTotal: String?,
     val nomeLoja: String?,

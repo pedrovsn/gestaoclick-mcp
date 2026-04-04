@@ -3,17 +3,17 @@ package com.gestaoclick.mcp.integration.erp
 import com.fasterxml.jackson.annotation.JsonProperty
 
 data class SalesListErpResponse(
-    @JsonProperty("code") val code: Int,
-    @JsonProperty("status") val status: String,
-    @JsonProperty("meta") val meta: SalesListErpMeta,
-    @JsonProperty("data") val data: List<SaleErpResponse>
+    @JsonProperty("code") val code: Int?,
+    @JsonProperty("status") val status: String?,
+    @JsonProperty("meta") val meta: SalesListErpMeta?,
+    @JsonProperty("data") val data: List<SaleErpResponse>?
 )
 
 data class SalesListErpMeta(
-    @JsonProperty("total_registros") val totalRegistros: Int,
-    @JsonProperty("total_da_pagina") val totalDaPagina: Int,
-    @JsonProperty("pagina_atual") val paginaAtual: Int,
-    @JsonProperty("limite_por_pagina") val limitePorPagina: Int,
+    @JsonProperty("total_registros") val totalRegistros: Int?,
+    @JsonProperty("total_da_pagina") val totalDaPagina: Int?,
+    @JsonProperty("pagina_atual") val paginaAtual: Int?,
+    @JsonProperty("limite_por_pagina") val limitePorPagina: Int?,
     @JsonProperty("pagina_anterior") val paginaAnterior: Int?,
     @JsonProperty("url_anterior") val urlAnterior: String?,
     @JsonProperty("proxima_pagina") val proximaPagina: Int?,
@@ -21,15 +21,15 @@ data class SalesListErpMeta(
 )
 
 data class SaleErpResponse(
-    @JsonProperty("id") val id: String,
-    @JsonProperty("codigo") val codigo: String,
+    @JsonProperty("id") val id: String?,
+    @JsonProperty("codigo") val codigo: String?,
     @JsonProperty("cliente_id") val clienteId: String?,
     @JsonProperty("nome_cliente") val nomeCliente: String?,
     @JsonProperty("vendedor_id") val vendedorId: String?,
     @JsonProperty("nome_vendedor") val nomeVendedor: String?,
     @JsonProperty("tecnico_id") val tecnicoId: String?,
     @JsonProperty("nome_tecnico") val nomeTecnico: String?,
-    @JsonProperty("data") val data: String,
+    @JsonProperty("data") val data: String?,
     @JsonProperty("previsao_entrega") val previsaoEntrega: String?,
     @JsonProperty("situacao_id") val situacaoId: String?,
     @JsonProperty("nome_situacao") val nomeSituacao: String?,
@@ -55,14 +55,14 @@ data class SaleErpResponse(
     @JsonProperty("numero_parcelas") val numeroParcelas: String?,
     @JsonProperty("intervalo_dias") val intervaloDias: String?,
     @JsonProperty("hash") val hash: String?,
-    @JsonProperty("equipamentos") val equipamentos: List<Any> = emptyList(),
-    @JsonProperty("pagamentos") val pagamentos: List<SalePaymentWrapperErpResponse> = emptyList(),
-    @JsonProperty("produtos") val produtos: List<SaleProductWrapperErpResponse> = emptyList(),
-    @JsonProperty("servicos") val servicos: List<SaleServiceWrapperErpResponse> = emptyList()
+    @JsonProperty("equipamentos") val equipamentos: List<Any>?,
+    @JsonProperty("pagamentos") val pagamentos: List<SalePaymentWrapperErpResponse>?,
+    @JsonProperty("produtos") val produtos: List<SaleProductWrapperErpResponse>?,
+    @JsonProperty("servicos") val servicos: List<SaleServiceWrapperErpResponse>?
 )
 
 data class SalePaymentWrapperErpResponse(
-    @JsonProperty("pagamento") val pagamento: SalePaymentErpResponse
+    @JsonProperty("pagamento") val pagamento: SalePaymentErpResponse?
 )
 
 data class SalePaymentErpResponse(
@@ -76,7 +76,7 @@ data class SalePaymentErpResponse(
 )
 
 data class SaleProductWrapperErpResponse(
-    @JsonProperty("produto") val produto: SaleProductErpResponse
+    @JsonProperty("produto") val produto: SaleProductErpResponse?
 )
 
 data class SaleProductErpResponse(
@@ -99,7 +99,7 @@ data class SaleProductErpResponse(
 )
 
 data class SaleServiceWrapperErpResponse(
-    @JsonProperty("servico") val servico: SaleServiceErpResponse
+    @JsonProperty("servico") val servico: SaleServiceErpResponse?
 )
 
 data class SaleServiceErpResponse(
