@@ -20,4 +20,4 @@ jobs:
 
       - name: Build
         working-directory: backend
-        run: bash gradlew build
+        run: java -classpath gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build
