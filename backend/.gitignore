@@ -7,6 +7,9 @@ build/
 *.iml
 out/
 
+# Local config (secrets)
+src/main/resources/application-local.yml
+
 # OS
 .DS_Store
 Thumbs.db
