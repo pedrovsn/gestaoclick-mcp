@@ -1,0 +1,6 @@
+# Normalize line endings to LF on commit
+* text=auto
+
+# Shell scripts must always use LF
+*.sh text eol=lf
+gradlew text eol=lf
