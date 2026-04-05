@@ -11,5 +11,6 @@ data class ListSalesByPeriodQuery(
     val nome: String? = null,
     val situacaoId: Int? = null,
     val clienteId: Int? = null,
-    val centroCustoId: Int? = null
+    val centroCustoId: Int? = null,
+    val tipo: String? = null
 ) : Query

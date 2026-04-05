@@ -24,7 +24,8 @@ class SalesController(private val handler: ListSalesByPeriodHandler) {
         @RequestParam(required = false) nome: String?,
         @RequestParam(required = false) situacaoId: Int?,
         @RequestParam(required = false) clienteId: Int?,
-        @RequestParam(required = false) centroCustoId: Int?
+        @RequestParam(required = false) centroCustoId: Int?,
+        @RequestParam(required = false) tipo: String?
     ): ResponseEntity<SalesResponse> {
         val query = ListSalesByPeriodQuery(
             dataInicio = dataInicio,
@@ -34,7 +35,8 @@ class SalesController(private val handler: ListSalesByPeriodHandler) {
             nome = nome,
             situacaoId = situacaoId,
             clienteId = clienteId,
-            centroCustoId = centroCustoId
+            centroCustoId = centroCustoId,
+            tipo = tipo
         )
         return ResponseEntity.ok(handler.handle(query))
     }

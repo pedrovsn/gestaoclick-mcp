@@ -37,7 +37,8 @@ class ListSalesByPeriodHandler(private val erpClient: ErpClient) {
                 nome = query.nome,
                 situacaoId = query.situacaoId,
                 clienteId = query.clienteId,
-                centroCustoId = query.centroCustoId
+                centroCustoId = query.centroCustoId,
+                tipo = query.tipo
             ),
             total = allSales.size,
             sales = allSales.map { it.toSaleResponse() }
@@ -53,7 +54,8 @@ class ListSalesByPeriodHandler(private val erpClient: ErpClient) {
         "nome" to query.nome,
         "situacao_id" to query.situacaoId?.toString(),
         "cliente_id" to query.clienteId?.toString(),
-        "centro_custo_id" to query.centroCustoId?.toString()
+        "centro_custo_id" to query.centroCustoId?.toString(),
+        "tipo" to query.tipo
     )
 }
 
