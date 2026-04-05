@@ -18,10 +18,6 @@ jobs:
           java-version: '25'
           distribution: 'temurin'
 
-      - name: Make gradlew executable
-        working-directory: backend
-        run: chmod +x gradlew
-
       - name: Build
         working-directory: backend
-        run: ./gradlew build
+        run: bash gradlew build
